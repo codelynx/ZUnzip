@@ -27,9 +27,9 @@
 
 
 import Foundation
-
 import fmemopen
 import libzip
+
 
 public enum ZUnzipError: Error, CustomStringConvertible {
 	case status(Int32)
@@ -78,14 +78,14 @@ public enum ZUnzipError: Error, CustomStringConvertible {
 
 public class ZUnzip {
 
-	var _zip: zip
+	var _zip: UnsafeMutablePointer<zip>?
 	var _file: FILE?
 
 	public init(path: String) throws {
 		var error: Int32 = 0
 		let systemPath = FileManager.default.fileSystemRepresentation(withPath: path)
 		
-		_zip = zip_open(systemPath, 0, &error).pointee
+		_zip = zip_open(systemPath, 0, &error)
 		if error != ZIP_ER_OK {
 			throw ZUnzipError.status(error)
 		}
@@ -95,20 +95,22 @@ public class ZUnzip {
 		var error: Int32 = 0
 		let file = fmemopen(UnsafeMutableRawPointer(mutating: data.bytes), data.length, "rb")
 		if file == nil { throw ZUnzipError.inMemoryFileAllocation }
-		_zip = _zip_open(nil, file, 0, &error).pointee
+		_zip = _zip_open(nil, file, 0, &error)
 		if error != ZIP_ER_OK { throw ZUnzipError.status(error) }
 		_file = file?.pointee
 	}
 
 	lazy var fileToIndexDictionary: [String: Int] = {
 		var dictionary = [String: Int]()
-		let count = zip_get_num_entries(&self._zip, 0)
-		for index in 0..<count {
-			var stat = zip_stat()
-			zip_stat_init(&stat)
-			zip_stat_index(&self._zip, zip_uint64_t(index), 0, &stat)
-			if let file = String(utf8String: stat.name) {
-				dictionary[file] = Int(index)
+		if let zip = self._zip {
+			let count = zip_get_num_entries(zip, 0)
+			for index in 0..<count {
+				var stat = zip_stat()
+				zip_stat_init(&stat)
+				zip_stat_index(zip, zip_uint64_t(index), 0, &stat)
+				if let file = String(utf8String: stat.name) {
+					dictionary[file] = Int(index)
+				}
 			}
 		}
 		return dictionary
@@ -120,21 +122,27 @@ public class ZUnzip {
 
 	public func data(forFile file: String) -> NSData? {
 		var data: NSData? = nil
-		if let index = self.fileToIndexDictionary[file] {
+		if let zip = self._zip, let index = self.fileToIndexDictionary[file] {
 			var stat = zip_stat()
 			zip_stat_init(&stat)
-			zip_stat_index(&self._zip, zip_uint64_t(index), 0, &stat)
+			zip_stat_index(zip, zip_uint64_t(index), 0, &stat)
 			var buffer = [UInt8](repeating: 0, count: Int(stat.size))
-			let zipFile = zip_fopen_index(&self._zip, zip_uint64_t(index), 0)
+			let zipFile = zip_fopen_index(zip, zip_uint64_t(index), 0)
 			zip_fread(zipFile, &buffer, stat.size);
 			data = NSData(bytes: buffer, length: Int(stat.size))
-			zip_fclose(zipFile);
+			zip_fclose(zipFile)
 		}
 		return data
 	}
 
+	public subscript(file: String) -> NSData? {
+		return self.data(forFile: file)
+	}
+
 	deinit {
-		zip_close(&_zip)
+		if let zip = self._zip {
+			zip_close(zip)
+		}
 		if var file = _file {
 			fclose(&file)
 		}
