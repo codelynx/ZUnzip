@@ -22,8 +22,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		D79FA75D1D3E9B720048FECE /* ZUnzip.h in Headers */ = {isa = PBXBuildFile; fileRef = D79FA75B1D3E9B720048FECE /* ZUnzip.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D79FA7641D3E9BA00048FECE /* ZUnzip.m in Sources */ = {isa = PBXBuildFile; fileRef = D79FA7631D3E9BA00048FECE /* ZUnzip.m */; };
+		CC94EDCA1D92B046003D1AFB /* ZUnzip.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC94EDC91D92B046003D1AFB /* ZUnzip.swift */; };
 		D79FA7691D3E9BBD0048FECE /* fmemopen.c in Sources */ = {isa = PBXBuildFile; fileRef = D79FA7661D3E9BBD0048FECE /* fmemopen.c */; };
 		D79FA76A1D3E9BBD0048FECE /* fmemopen.h in Headers */ = {isa = PBXBuildFile; fileRef = D79FA7671D3E9BBD0048FECE /* fmemopen.h */; };
 		D79FA7C61D3E9BC60048FECE /* config.h in Headers */ = {isa = PBXBuildFile; fileRef = D79FA76D1D3E9BC60048FECE /* config.h */; };
@@ -129,10 +128,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CC94EDC91D92B046003D1AFB /* ZUnzip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZUnzip.swift; sourceTree = "<group>"; };
+		CC94EDCB1D92B0A3003D1AFB /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
+		CC94EDCC1D92B0FE003D1AFB /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		D79FA7581D3E9B720048FECE /* ZUnzip.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ZUnzip.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D79FA75B1D3E9B720048FECE /* ZUnzip.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZUnzip.h; sourceTree = "<group>"; };
 		D79FA75C1D3E9B720048FECE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D79FA7631D3E9BA00048FECE /* ZUnzip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZUnzip.m; sourceTree = "<group>"; };
 		D79FA7661D3E9BBD0048FECE /* fmemopen.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fmemopen.c; sourceTree = "<group>"; };
 		D79FA7671D3E9BBD0048FECE /* fmemopen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fmemopen.h; sourceTree = "<group>"; };
 		D79FA7681D3E9BBD0048FECE /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -262,8 +262,7 @@
 			children = (
 				D79FA76C1D3E9BC60048FECE /* libzip */,
 				D79FA7651D3E9BBD0048FECE /* fmemopen */,
-				D79FA75B1D3E9B720048FECE /* ZUnzip.h */,
-				D79FA7631D3E9BA00048FECE /* ZUnzip.m */,
+				CC94EDC91D92B046003D1AFB /* ZUnzip.swift */,
 				D79FA75C1D3E9B720048FECE /* Info.plist */,
 			);
 			path = ZUnzip;
@@ -272,6 +271,7 @@
 		D79FA7651D3E9BBD0048FECE /* fmemopen */ = {
 			isa = PBXGroup;
 			children = (
+				CC94EDCC1D92B0FE003D1AFB /* module.modulemap */,
 				D79FA7661D3E9BBD0048FECE /* fmemopen.c */,
 				D79FA7671D3E9BBD0048FECE /* fmemopen.h */,
 				D79FA7681D3E9BBD0048FECE /* README.md */,
@@ -283,10 +283,10 @@
 			isa = PBXGroup;
 			children = (
 				D79FA76D1D3E9BC60048FECE /* config.h */,
-				D79FA76E1D3E9BC60048FECE /* zip.h */,
-				D79FA76F1D3E9BC60048FECE /* zip_add.c */,
+				CC94EDCB1D92B0A3003D1AFB /* module.modulemap */,
 				D79FA7701D3E9BC60048FECE /* zip_add_dir.c */,
 				D79FA7711D3E9BC60048FECE /* zip_add_entry.c */,
+				D79FA76F1D3E9BC60048FECE /* zip_add.c */,
 				D79FA7721D3E9BC60048FECE /* zip_close.c */,
 				D79FA7731D3E9BC60048FECE /* zip_delete.c */,
 				D79FA7741D3E9BC60048FECE /* zip_dir_add.c */,
@@ -294,14 +294,14 @@
 				D79FA7761D3E9BC60048FECE /* zip_discard.c */,
 				D79FA7771D3E9BC60048FECE /* zip_entry.c */,
 				D79FA7781D3E9BC60048FECE /* zip_err_str.c */,
-				D79FA7791D3E9BC60048FECE /* zip_error.c */,
 				D79FA77A1D3E9BC60048FECE /* zip_error_clear.c */,
-				D79FA77B1D3E9BC60048FECE /* zip_error_get.c */,
 				D79FA77C1D3E9BC60048FECE /* zip_error_get_sys_type.c */,
+				D79FA77B1D3E9BC60048FECE /* zip_error_get.c */,
 				D79FA77D1D3E9BC60048FECE /* zip_error_strerror.c */,
 				D79FA77E1D3E9BC60048FECE /* zip_error_to_str.c */,
-				D79FA77F1D3E9BC60048FECE /* zip_extra_field.c */,
+				D79FA7791D3E9BC60048FECE /* zip_error.c */,
 				D79FA7801D3E9BC60048FECE /* zip_extra_field_api.c */,
+				D79FA77F1D3E9BC60048FECE /* zip_extra_field.c */,
 				D79FA7811D3E9BC60048FECE /* zip_fclose.c */,
 				D79FA7821D3E9BC60048FECE /* zip_fdopen.c */,
 				D79FA7831D3E9BC60048FECE /* zip_file_add.c */,
@@ -316,10 +316,10 @@
 				D79FA78C1D3E9BC60048FECE /* zip_file_set_external_attributes.c */,
 				D79FA78D1D3E9BC60048FECE /* zip_file_strerror.c */,
 				D79FA78E1D3E9BC60048FECE /* zip_filerange_crc.c */,
-				D79FA78F1D3E9BC60048FECE /* zip_fopen.c */,
 				D79FA7901D3E9BC60048FECE /* zip_fopen_encrypted.c */,
-				D79FA7911D3E9BC60048FECE /* zip_fopen_index.c */,
 				D79FA7921D3E9BC60048FECE /* zip_fopen_index_encrypted.c */,
+				D79FA7911D3E9BC60048FECE /* zip_fopen_index.c */,
+				D79FA78F1D3E9BC60048FECE /* zip_fopen.c */,
 				D79FA7931D3E9BC60048FECE /* zip_fread.c */,
 				D79FA7941D3E9BC60048FECE /* zip_get_archive_comment.c */,
 				D79FA7951D3E9BC60048FECE /* zip_get_archive_flag.c */,
@@ -357,18 +357,19 @@
 				D79FA7B51D3E9BC60048FECE /* zip_source_read.c */,
 				D79FA7B61D3E9BC60048FECE /* zip_source_stat.c */,
 				D79FA7B71D3E9BC60048FECE /* zip_source_window.c */,
-				D79FA7B81D3E9BC60048FECE /* zip_source_zip.c */,
 				D79FA7B91D3E9BC60048FECE /* zip_source_zip_new.c */,
-				D79FA7BA1D3E9BC60048FECE /* zip_stat.c */,
+				D79FA7B81D3E9BC60048FECE /* zip_source_zip.c */,
 				D79FA7BB1D3E9BC60048FECE /* zip_stat_index.c */,
 				D79FA7BC1D3E9BC60048FECE /* zip_stat_init.c */,
+				D79FA7BA1D3E9BC60048FECE /* zip_stat.c */,
 				D79FA7BD1D3E9BC60048FECE /* zip_strerror.c */,
 				D79FA7BE1D3E9BC60048FECE /* zip_string.c */,
-				D79FA7BF1D3E9BC60048FECE /* zip_unchange.c */,
 				D79FA7C01D3E9BC60048FECE /* zip_unchange_all.c */,
 				D79FA7C11D3E9BC60048FECE /* zip_unchange_archive.c */,
 				D79FA7C21D3E9BC60048FECE /* zip_unchange_data.c */,
+				D79FA7BF1D3E9BC60048FECE /* zip_unchange.c */,
 				D79FA7C31D3E9BC60048FECE /* zip_utf-8.c */,
+				D79FA76E1D3E9BC60048FECE /* zip.h */,
 				D79FA7C41D3E9BC60048FECE /* zipconf.h */,
 				D79FA7C51D3E9BC60048FECE /* zipint.h */,
 			);
@@ -392,7 +393,6 @@
 			files = (
 				D79FA81E1D3E9BC60048FECE /* zipint.h in Headers */,
 				D79FA81D1D3E9BC60048FECE /* zipconf.h in Headers */,
-				D79FA75D1D3E9B720048FECE /* ZUnzip.h in Headers */,
 				D79FA76A1D3E9BBD0048FECE /* fmemopen.h in Headers */,
 				D79FA7C71D3E9BC60048FECE /* zip.h in Headers */,
 				D79FA7C61D3E9BC60048FECE /* config.h in Headers */,
@@ -439,6 +439,7 @@
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = 2P97EM4L4N;
 						DevelopmentTeamName = "Electricwoods LLC";
+						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -507,6 +508,7 @@
 				D79FA7D81D3E9BC60048FECE /* zip_extra_field.c in Sources */,
 				D79FA8091D3E9BC60048FECE /* zip_source_function.c in Sources */,
 				D79FA8071D3E9BC60048FECE /* zip_source_filep.c in Sources */,
+				CC94EDCA1D92B046003D1AFB /* ZUnzip.swift in Sources */,
 				D79FA7CC1D3E9BC60048FECE /* zip_delete.c in Sources */,
 				D79FA7CD1D3E9BC60048FECE /* zip_dir_add.c in Sources */,
 				D79FA7CF1D3E9BC60048FECE /* zip_discard.c in Sources */,
@@ -577,7 +579,6 @@
 				D79FA7F91D3E9BC60048FECE /* zip_rename.c in Sources */,
 				D79FA8011D3E9BC60048FECE /* zip_source_buffer.c in Sources */,
 				D79FA7D21D3E9BC60048FECE /* zip_error.c in Sources */,
-				D79FA7641D3E9BA00048FECE /* ZUnzip.m in Sources */,
 				D79FA7EA1D3E9BC60048FECE /* zip_fopen_index.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -622,8 +623,10 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -671,8 +674,10 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -692,6 +697,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -702,7 +708,9 @@
 		D79FA7611D3E9B720048FECE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -714,6 +722,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.electricwoods.ZUnzip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/ZUnzip/fmemopen $(SRCROOT)/ZUnzip/libzip";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				VALID_ARCHS = "arm64 armv7 armv7s x86_64 i386";
 			};
 			name = Debug;
@@ -721,7 +732,9 @@
 		D79FA7621D3E9B720048FECE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -733,6 +746,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.electricwoods.ZUnzip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/ZUnzip/fmemopen $(SRCROOT)/ZUnzip/libzip";
+				SWIFT_VERSION = 3.0;
 				VALID_ARCHS = "arm64 armv7 armv7s x86_64 i386";
 			};
 			name = Release;
