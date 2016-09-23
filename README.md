@@ -80,6 +80,13 @@ https://nih.at/libzip/index.html
 
 `fmemopen` is forked from Jeff Verkoeyen's code.  It provides memory based file descriptor, and C based code is able to read and write data to memory storage instead of file storage.
 
+## Special thanks
+
+@moriturus gave me a great feetback about swiftication about this ZUnzip. I like to show great application for this.  Thanks!!
+
+https://github.com/moriturus/ZUnzip/tree/swiftized
+
+
 ## License
 
 * `ZUnzip` - MIT License
