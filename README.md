@@ -12,7 +12,13 @@
 Instantiate `ZUnzip` object with file path to zip file. It throws an error, when it failed to create.
 
 ```.swift
-	init(data: NSData) throws
+	let path = ...
+	let unzip = try! ZUnzip(path: path)
+```
+
+```
+	let data = ...
+	let unzip = try!  ZUnzip(data: data)
 ```
 
 Instantiate `ZUnzip` object with zip binary data.  It throws an error, when it failed to create.
@@ -21,7 +27,7 @@ Instantiate `ZUnzip` object with zip binary data.  It throws an error, when it f
 ## To list files
 
 ```.swift
-	var files: [String]
+	let files: [String] = unzip.files
 ```
 
 `files` methods returns all the file name in archive.
@@ -29,11 +35,11 @@ Instantiate `ZUnzip` object with zip binary data.  It throws an error, when it f
 ## To extract a file
 
 ```.swift
-	data(forFile file: String) -> NSData?
+	let data = unzip(forFile: "sample/sample.jpg") // optional
 ```
 
 ```.swift
-	subscript(file: String) -> NSData?
+	let data = unzip["sample/sample.jpg"] // optional
 ```
 
 These methods extract binary data from given file name. And it returns `nil` if file name does not exists.
@@ -47,14 +53,16 @@ You may extract a file by name as following code (Swift).
 ```.swift
 import ZUnzip
 
-let data = ...
-if let unzip = ZUnzip(data: data) {
+do {
+    let data = ...
+    let unzip = do ZUnzip(data: data) {
 	if let imageData = unzip.data(forFile: "sample/sample.jpg") {
 		if let image = UIImage(data: imageData) {
 			// ...
 		}
 	}
 }
+catch { ... }
 ```
 
 ## Sub Components
