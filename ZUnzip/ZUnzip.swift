@@ -79,7 +79,7 @@ public enum ZUnzipError: Error, CustomStringConvertible {
 public class ZUnzip {
 
 	var _zip: UnsafeMutablePointer<zip>?
-	var _file: FILE?
+	var _file: UnsafeMutablePointer<FILE>?
 
 	public init(path: String) throws {
 		var error: Int32 = 0
@@ -93,11 +93,10 @@ public class ZUnzip {
 
 	public init(data: NSData) throws {
 		var error: Int32 = 0
-		let file = fmemopen(UnsafeMutableRawPointer(mutating: data.bytes), data.length, "rb")
-		if file == nil { throw ZUnzipError.inMemoryFileAllocation }
-		_zip = _zip_open(nil, file, 0, &error)
+		_file = fmemopen(UnsafeMutableRawPointer(mutating: data.bytes), data.length, "rb")
+		if _file == nil { throw ZUnzipError.inMemoryFileAllocation }
+		_zip = _zip_open(nil, _file, 0, &error)
 		if error != ZIP_ER_OK { throw ZUnzipError.status(error) }
-		_file = file?.pointee
 	}
 
 	lazy var fileToIndexDictionary: [String: Int] = {
@@ -143,8 +142,8 @@ public class ZUnzip {
 		if let zip = self._zip {
 			zip_close(zip)
 		}
-		if var file = _file {
-			fclose(&file)
+		if let file = self._file {
+			fclose(file)
 		}
 	}
 
