@@ -93,7 +93,7 @@ public class ZUnzip {
 
 	public init(data: NSData) throws {
 		var error: Int32 = 0
-		_file = fmemopen(UnsafeMutableRawPointer(mutating: data.bytes), data.length, "rb")
+		_file = _fmemopen(UnsafeMutableRawPointer(mutating: data.bytes), data.length, "rb")
 		if _file == nil { throw ZUnzipError.inMemoryFileAllocation }
 		_zip = _zip_open(nil, _file, 0, &error)
 		if error != ZIP_ER_OK { throw ZUnzipError.status(error) }
