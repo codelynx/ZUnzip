@@ -24,7 +24,7 @@ class ZUnzipTests: XCTestCase {
 		super.setUp()
 
 		let file = Bundle(for: ZUnzipTests.self).path(forResource: "fmemopen", ofType: "zip")
-		print("\(file)")
+		print("\(String(describing: file))")
 
 	}
 	
@@ -34,6 +34,12 @@ class ZUnzipTests: XCTestCase {
 	}
 	
 	func testExample() {
+	
+		// Since ZUnzip is not capable compressing files, the test canot be performed with roundtrip
+		// Uncompressed files used in this test to check against the result of ZUnzip, should be prepared manaully,
+		// By uncompress `fmemopen.zip` by hand, and copy them to ZUnzipTest folder by renaming `.dat` extension.
+		// Maske sure *.dat and *.zip are synchronized, or this test will fail.
+	
 		let file = self.file(name: "fmemopen", ofType: "zip")
 		do {
 			let file1 = self.data(name: "README.md", ofType: "dat")
@@ -52,6 +58,9 @@ class ZUnzipTests: XCTestCase {
 			XCTAssertNotNil(data2)
 			XCTAssertNotNil(data3)
 			XCTAssertNotNil(data4)
+
+			print(file2.debugDescription)
+			print(data2!.debugDescription)
 
 			XCTAssertEqual(file1, data1)
 			XCTAssertEqual(file2, data2)
